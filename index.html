@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="generator" content="Asciidoctor 0.1.4">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Título</title>
+<title>Atividades</title>
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
 article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary { display: block; }
@@ -363,27 +363,18 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </head>
 <body class="article">
 <div id="header">
-<h1>Título</h1>
-<span id="author" class="author">Escritor</span><br>
-<span id="email" class="email">email</span><br>
+<h1>Atividades</h1>
+<span id="author" class="author">Tonny Kentenich</span><br>
+<span id="email" class="email"><a href="mailto:tonny.kentenich@live.com">tonny.kentenich@live.com</a></span><br>
 </div>
 <div id="content">
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Coisas escritas em padrão font, para acessar o <a href="http://www.google.com">Google</a></p>
+<p>Esta página tem o intuito acadêmico de publicação de minhas atividades na matéria de Processamento Digital de Imagens.</p>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Não sei o que faz!
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>Este é um exemplo de código em <em>{cpp}</em></p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -394,15 +385,15 @@ using namespace cv;
 using namespace std;
 
 int main(int argc, char** argv){
-  Mat image;	// Classe Mat a(nL, nC, CV_8U);
-  Vec3b val;	// Vetores
+  Mat image;    // Classe Mat a(nL, nC, CV_8U);
+  Vec3b val;    // Vetores
   int x1=0, x2=0, y1=0, y2=0;
 
-  image= imread(argv[1],CV_LOAD_IMAGE_GRAYSCALE);	// Grayscale -&gt; matriz com tons de cinza / "unsigned char" -&gt; "uchar" 255 bits
+  image= imread(argv[1],CV_LOAD_IMAGE_GRAYSCALE);     // Grayscale -&gt; matriz com tons de cinza / "unsigned char" -&gt; "uchar" 255 bits
   if(!image.data)
     cout &lt;&lt; "nao abriu bolhas.png" &lt;&lt; endl;
 
-  namedWindow("janela",WINDOW_AUTOSIZE);	// Nomeando e identificando janelas
+  namedWindow("janela",WINDOW_AUTOSIZE);     // Nomeando e identificando janelas
 
     cout &lt;&lt; "escreva as cordenadas x1 y1 no formato: ( valor [enter] valor )" &lt;&lt; endl;
     cin &gt;&gt; x1 &gt;&gt; y1;
@@ -429,7 +420,7 @@ int main(int argc, char** argv){
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-09-17 21:41:52 -03
+Last updated 2018-09-17 21:56:15 -03
 </div>
 </div>
 </body>
