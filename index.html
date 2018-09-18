@@ -378,61 +378,64 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <div class="sect1">
 <h2 id="_atividade_1">Atividade 1</h2>
 <div class="sectionbody">
-<div class="ulist square">
-<ul class="square">
-<li>
-<p>pq?</p>
-</li>
-<li>
-<p>pq 2?</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>Para este primeiro exercício, foi implementado um programa <code>regions.cpp</code>, o qual irá solicitar dois pontos <em>P1</em> e <em>P2</em> localizados dentro dos limites da imagem fornecida. Estes pontos serão os vértices opostos de um retângulo, que terá região exibida como negativo.</p>
 </div>
 <div class="listingblock">
+<div class="title">regions.cpp</div>
 <div class="content">
-<pre class="highlight"><code class="cpp language-cpp">  int a;</code></pre>
+<pre class="highlight"><code class="cpp language-cpp">#include &lt;iostream&gt;
+#include &lt;opencv2/opencv.hpp&gt;
+
+using namespace cv;
+using namespace std;
+
+int main(int argc, char** argv){
+  Mat image;	// Classe Mat a(nL, nC, CV_8U);
+  Vec3b val;	// Vetores
+  int x1=0, x2=0, y1=0, y2=0;
+
+  image= imread(argv[1],CV_LOAD_IMAGE_GRAYSCALE);	// Grayscale -&gt; matriz com tons de cinza / "unsigned char" -&gt; "uchar" 255 bits
+  if(!image.data)
+    cout &lt;&lt; "nao abriu o arquivo" &lt;&lt; endl;
+
+  namedWindow("janela",WINDOW_AUTOSIZE);	// Nomeando e identificando janelas
+
+    cout &lt;&lt; "escreva as cordenadas x1 y1 no formato: ( valor [enter] valor )" &lt;&lt; endl;
+    cin &gt;&gt; x1 &gt;&gt; y1;
+    cout &lt;&lt; endl;
+    cout &lt;&lt; "escreva as cordenadas x2 y2 no formato: ( valor [enter] valor )" &lt;&lt; endl;
+    cin &gt;&gt; x2 &gt;&gt; y2;
+    cout &lt;&lt; endl;
+
+  for(int i=x1;i&lt;x2;i++){
+    for(int j=y1;j&lt;y2;j++){
+      image.at&lt;uchar&gt;(i,j)=255-image.at&lt;uchar&gt;(i,j);			// Acessando elementos unsigned.. gravando numero 0
+    }
+  }
+
+  imshow("janela", image);  			// Abrindo janela para imagem
+  imwrite("regions.png", image);
+  waitKey();
+  return 0;
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>|</p>
-</div>
-<div class="paragraph">
-<p>parece tudo certo.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="ruby language-ruby">  puts "Hello World!"</code></pre>
-</div>
+<p>O resultado do programa acima é mostrado visualmente na imagem a seguir. Os valores de <em>P1</em> e <em>P2</em> foram, respectivamente, x1=10, y1=20 e x2=150, y2=200.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="bolhas.png" alt="bolhas">
+<img src="regions.png" alt="regions">
 </div>
-<div class="title">Figure 1. bolhas in a box</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>Não estpa ficando em bloco.. Poxa</pre>
-</div>
-</div>
-<div class="quoteblock">
-<blockquote>
-<div class="paragraph">
-<p>será que tem jeito?</p>
-</div>
-</blockquote>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>tem esse também</pre>
-</div>
+<div class="title">Figure 1. regions.png</div>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-09-18 12:50:44 -03
+Last updated 2018-09-18 15:33:53 -03
 </div>
 </div>
 </body>
