@@ -385,12 +385,51 @@ Não sei o que faz!
 </tr>
 </table>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="cpp language-cpp">#include &lt;iostream&gt;
+#include &lt;opencv2/opencv.hpp&gt;
+
+using namespace cv;
+using namespace std;
+
+int main(int argc, char** argv){
+  Mat image;	// Classe Mat a(nL, nC, CV_8U);
+  Vec3b val;	// Vetores
+  int x1=0, x2=0, y1=0, y2=0;
+
+  image= imread(argv[1],CV_LOAD_IMAGE_GRAYSCALE);	// Grayscale -&gt; matriz com tons de cinza / "unsigned char" -&gt; "uchar" 255 bits
+  if(!image.data)
+    cout &lt;&lt; "nao abriu bolhas.png" &lt;&lt; endl;
+
+  namedWindow("janela",WINDOW_AUTOSIZE);	// Nomeando e identificando janelas
+
+    cout &lt;&lt; "escreva as cordenadas x1 y1 no formato: ( valor [enter] valor )" &lt;&lt; endl;
+    cin &gt;&gt; x1 &gt;&gt; y1;
+    cout &lt;&lt; endl;
+    cout &lt;&lt; "escreva as cordenadas x2 y2 no formato: ( valor [enter] valor )" &lt;&lt; endl;
+    cin &gt;&gt; x2 &gt;&gt; y2;
+    cout &lt;&lt; endl;
+
+
+  for(int i=x1;i&lt;x2;i++){
+    for(int j=y1;j&lt;y2;j++){
+      image.at&lt;uchar&gt;(i,j)=255-image.at&lt;uchar&gt;(i,j);			// Acessando elementos unsigned.. gravando numero 0
+    }
+  }
+
+  imshow("janela", image);  			// Abrindo janela para imagem
+  waitKey();
+  return 0;
+}</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-09-05 22:45:34 -03
+Last updated 2018-09-17 16:59:59 -03
 </div>
 </div>
 </body>
