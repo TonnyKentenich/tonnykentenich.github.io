@@ -379,12 +379,12 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h2 id="_atividade_1">Atividade 1</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Para este primeiro exercício, foi implementado um programa <code>regions.cpp</code>, o qual irá solicitar dois pontos <em>P1</em> e <em>P2</em> localizados dentro dos limites da imagem fornecida. Estes pontos serão os vértices opostos de um retângulo, que terá região exibida como negativo.</p>
+<p>Para este primeiro exercício, foi implementado um programa <code>regions.cpp</code>, o qual irá solicitar dois pontos <strong><em>P1</em></strong> e <strong><em>P2</em></strong> localizados dentro dos limites da imagem fornecida. Estes pontos serão os vértices opostos de um retângulo, que terá região exibida como negativo.</p>
 </div>
 <div class="listingblock">
 <div class="title">regions.cpp</div>
 <div class="content">
-<pre class="highlight"><code class="cpp language-cpp">#include &lt;iostream&gt;
+<pre class="highlight"><code class="c language-c">#include &lt;iostream&gt;
 #include &lt;opencv2/opencv.hpp&gt;
 
 using namespace cv;
@@ -422,7 +422,7 @@ int main(int argc, char** argv){
 </div>
 </div>
 <div class="paragraph">
-<p>O resultado do programa acima é mostrado visualmente na imagem a seguir. Os valores de <em>P1</em> e <em>P2</em> foram, respectivamente, x1=10, y1=20 e x2=150, y2=200.</p>
+<p>O resultado do programa acima é mostrado visualmente na imagem a seguir. Os valores de <strong><em>P1</em></strong> e <strong><em>P2</em></strong> foram, respectivamente, <strong>x1=10</strong>, <strong>y1=20</strong> e <strong>x2=150</strong>, <strong>y2=200</strong>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -436,6 +436,69 @@ int main(int argc, char** argv){
 <h2 id="_atividade_2">Atividade 2</h2>
 <div class="sectionbody">
 <div class="paragraph">
+<p>Para este segundo exercício, foi implementado um programa <code>trocaregioes.cpp</code> onde troca os quadrantes em diagonal na imagem definida. Foi explorado o uso da classe <code>Mat</code> e seus construtores para a troca de regiões.</p>
+</div>
+<div class="listingblock">
+<div class="title">trocaregioes.cpp</div>
+<div class="content">
+<pre class="highlight"><code class="cpp language-cpp">#include &lt;iostream&gt;
+#include &lt;opencv2/opencv.hpp&gt;
+
+using namespace cv;
+using namespace std;
+
+int main(int argc, char** argv){
+  Mat image, virt;	// Classe Mat a(nL, nC, CV_8U);
+  Vec3b val;	// Vetores
+  int larg, alt;
+
+  image = imread(argv[1],CV_LOAD_IMAGE_GRAYSCALE);	// Grayscale -&gt; matriz com tons de cinza / "unsigned char" -&gt; "uchar" 255 bits
+  if(!image.data)
+    cout &lt;&lt; "nao abriu bolhas.png" &lt;&lt; endl;
+
+  virt = imread(argv[1],CV_LOAD_IMAGE_GRAYSCALE);	// Grayscale -&gt; matriz com tons de cinza / "unsigned char" -&gt; "uchar" 255 bits
+  if(!virt.data)
+    cout &lt;&lt; "nao abriu bolhas.png" &lt;&lt; endl;
+
+
+  //virt=image;
+  larg=image.size().width;
+  alt=image.size().height;
+
+  namedWindow("janela",WINDOW_AUTOSIZE);	// Nomeando e identificando janelas
+
+  // Construindo quadrado da diagonal final
+  for(int i=0;i&lt;alt/2;i++){
+    for(int j=0;j&lt;larg/2;j++){
+      virt.at&lt;uchar&gt;(i+alt/2,j+larg/2)=image.at&lt;uchar&gt;(i,j);
+      virt.at&lt;uchar&gt;(i,j)=image.at&lt;uchar&gt;(i+alt/2,j+larg/2);
+      virt.at&lt;uchar&gt;(i,j+larg/2)=image.at&lt;uchar&gt;(i+alt/2,j);
+      virt.at&lt;uchar&gt;(i+alt/2,j)=image.at&lt;uchar&gt;(i,j+larg/2);
+    }
+  }
+
+  imshow("janela", virt);  			// Abrindo janela para imagem
+  imwrite("trocaregioes.png", virt);
+  waitKey();
+  return 0;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>O resultado do programa acima é mostrado na imagem a seguir.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Ativ2/trocaregioes.png" alt="trocaregioes">
+</div>
+<div class="title">Figure 2. trocaregioes.png</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_atividade_3">Atividade 3</h2>
+<div class="sectionbody">
+<div class="paragraph">
 <p>Em construção . . .</p>
 </div>
 </div>
@@ -443,7 +506,7 @@ int main(int argc, char** argv){
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-09-18 21:19:54 -03
+Last updated 2018-09-18 22:56:07 -03
 </div>
 </div>
 </body>
